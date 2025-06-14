@@ -6,7 +6,7 @@ const Newsletter = () => {
 
   return (
     <section
-      className={` mx-auto p-8  shadow-md ${
+      className={` mx-auto md:py-20 p-8  shadow-md ${
         darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'
       }`}
     >

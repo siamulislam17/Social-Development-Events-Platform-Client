@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { FiUsers } from 'react-icons/fi';
 import AuthContext from '../Auth/AuthContext';
+import { Link } from 'react-router';
 
 const Navbar = () => {
   const { darkMode, setDarkMode } = useContext(AuthContext);
@@ -41,6 +42,7 @@ const Navbar = () => {
         </label>
 
         {/* Login Button */}
+        <Link to="/login" >
         <button
           className={`btn transition duration-300 ${
             darkMode
@@ -50,6 +52,7 @@ const Navbar = () => {
         >
           Login
         </button>
+        </Link>
       </div>
     </nav>
   );
