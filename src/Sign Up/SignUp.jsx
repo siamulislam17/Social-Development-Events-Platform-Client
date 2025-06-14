@@ -2,15 +2,31 @@ import React, { useContext, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import AuthContext from '../Auth/AuthContext';
-import { Link } from 'react-router';
+import { Link } from 'react-router'; // fixed import
 
 const SignUp = () => {
   const { darkMode } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if (!passwordRegex.test(value)) {
+      setPasswordError('Password must include uppercase, lowercase, and be at least 6 characters long.');
+    } else {
+      setPasswordError('');
+    }
+  };
 
   const handleSignUp = (e) => {
     e.preventDefault();
+    if (passwordError) {
+      return;
+    }
     console.log('Sign up with email & password');
   };
 
@@ -29,7 +45,7 @@ const SignUp = () => {
 
         <form onSubmit={handleSignUp} className="space-y-4">
           {/* Name */}
-          <div>
+          <div className="form-control">
             <label className="label">
               <span className="label-text">Name</span>
             </label>
@@ -37,15 +53,13 @@ const SignUp = () => {
               type="text"
               name="name"
               placeholder="Your full name"
-              className={`input input-bordered w-full ${
-                darkMode ? 'bg-gray-100 text-gray-900 border-0' : 'bg-white text-gray-900'
-              }`}
+              className="input input-bordered w-full"
               required
             />
           </div>
 
           {/* Email */}
-          <div>
+          <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
             </label>
@@ -53,15 +67,13 @@ const SignUp = () => {
               type="email"
               name="email"
               placeholder="example@email.com"
-              className={`input input-bordered w-full ${
-                darkMode ? 'bg-gray-100 text-gray-900 border-0' : 'bg-white text-gray-900'
-              }`}
+              className="input input-bordered w-full"
               required
             />
           </div>
 
           {/* Photo URL */}
-          <div>
+          <div className="form-control">
             <label className="label">
               <span className="label-text">Photo URL</span>
             </label>
@@ -69,15 +81,13 @@ const SignUp = () => {
               type="url"
               name="photo"
               placeholder="https://your-photo-url.com"
-              className={`input input-bordered w-full ${
-                darkMode ? 'bg-gray-100 text-gray-900 border-0' : 'bg-white text-gray-900'
-              }`}
+              className="input input-bordered w-full"
               required
             />
           </div>
 
           {/* Password */}
-          <div>
+          <div className="form-control">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
@@ -86,9 +96,9 @@ const SignUp = () => {
                 type={showPassword ? 'text' : 'password'}
                 name="password"
                 placeholder="Create a password"
-                className={`input input-bordered w-full pr-10 ${
-                  darkMode ? 'bg-gray-100 text-gray-900 border-0' : 'bg-white text-gray-900'
-                }`}
+                className="input input-bordered w-full pr-10"
+                value={password}
+                onChange={handlePasswordChange}
                 required
               />
               <span
@@ -98,9 +108,10 @@ const SignUp = () => {
                 {showPassword ? <FiEyeOff /> : <FiEye />}
               </span>
             </div>
+            {passwordError && (
+              <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+            )}
           </div>
-
-          
 
           {/* Submit Button */}
           <button type="submit" className="btn bg-accent border-accent mt-3 w-full">
