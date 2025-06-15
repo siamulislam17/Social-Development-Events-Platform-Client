@@ -1,9 +1,10 @@
 
 
+import {  createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
 
-
-import React, {  useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import AuthContext from './AuthContext';
+import { auth } from "../FireBase Functionality/firebase.config";
 
 
 const AuthProvider = ( {children} ) => {
@@ -12,12 +13,44 @@ const AuthProvider = ( {children} ) => {
 
     //dark mode
     const [darkMode, setDarkMode] = useState(false);
-    console.log('Dark mode state:', darkMode);
+
+    //user state
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+    
+
+    const signInWithEmailPassword = (email, password) => {
+       return createUserWithEmailAndPassword(auth, email, password)
+    };
+
+    const updateUser = (name, photo) => {
+       return updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: photo
+        })
+    }
+
+     useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+            setLoading(false);
+            
+        });
+
+        return () => unsubscribe();
+    }, []);
 
    const userData={
    
         darkMode,
-        setDarkMode
+        setDarkMode,
+        signInWithEmailPassword,
+        user, 
+        setUser,
+        loading,
+        setLoading,
+        updateUser
+
     }
     return (
         <div>
