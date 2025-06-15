@@ -1,6 +1,6 @@
 
 
-import {  createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
+import {  createUserWithEmailAndPassword, signOut ,GoogleAuthProvider, onAuthStateChanged, signInWithPopup, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
 
 import React, {  useEffect, useState } from 'react';
 import AuthContext from './AuthContext';
@@ -13,6 +13,8 @@ const AuthProvider = ( {children} ) => {
 
     //dark mode
     const [darkMode, setDarkMode] = useState(false);
+
+    const provider = new GoogleAuthProvider();
 
     //user state
     const [user, setUser] = useState(null);
@@ -43,6 +45,21 @@ const AuthProvider = ( {children} ) => {
         return () => unsubscribe();
     }, []);
 
+
+    //google signin
+    const googleSignIn = () => {
+       return signInWithPopup(auth, provider)
+    }
+
+
+    const signout = () => {
+        return signOut(auth)
+    }
+
+
+    const signIn = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password);
+    };
    const userData={
    
         darkMode,
@@ -51,7 +68,10 @@ const AuthProvider = ( {children} ) => {
         user, 
         loading,
         setLoading,
-        updateUser
+        updateUser,
+        googleSignIn,
+        signout,
+        signIn 
 
     }
     return (

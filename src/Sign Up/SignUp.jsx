@@ -6,7 +6,7 @@ import { Link } from 'react-router'; // fixed import
 import Swal from 'sweetalert2';
 
 const SignUp = () => {
-  const { darkMode,user,signInWithEmailPassword,updateUser } = useContext(AuthContext);
+  const { darkMode,user,googleSignIn,signInWithEmailPassword,updateUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -61,7 +61,26 @@ const SignUp = () => {
 
 
   const handleGoogleSignUp = () => {
-    console.log('Sign up with Google');
+    googleSignIn()
+    .then((result) => {
+        const user = result.user;
+        updateUser(user.displayName, user.photoURL);
+    
+        Swal.fire({
+            title: 'Sign Up Successful',
+            text: 'Welcome to our platform!',
+            icon: 'success',
+            confirmButtonText: 'OK',
+        });
+        })
+      .catch((error) => {
+        Swal.fire({
+          title: 'Sign Up Failed',
+          text: error.message,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      });
   };
 
   return (

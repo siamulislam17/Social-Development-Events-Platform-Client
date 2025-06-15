@@ -3,18 +3,53 @@ import { FcGoogle } from 'react-icons/fc';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import AuthContext from '../Auth/AuthContext';
 import { Link } from 'react-router';
+import Swal from 'sweetalert2';
 
 const Login = () => {
-  const { darkMode } = useContext(AuthContext);
+  const { darkMode , signIn, googleSignIn } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log('Login with email & password');
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    signIn(email, password)
+    .then(() => {
+      Swal.fire({
+        title: 'Login Successful',
+        text: 'Welcome back!',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
+    })
+    .catch((error) => {
+      Swal.fire({
+        title: 'Login Failed',
+        text: error.message,
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+    });
   };
 
   const handleGoogleLogin = () => {
-    console.log('Login with Google');
+    googleSignIn()
+      .then(() => {
+        Swal.fire({
+          title: 'Login Successful',
+          text: 'Welcome back!',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: 'Login Failed',
+          text: error.message,
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+      });
   };
 
   return (
