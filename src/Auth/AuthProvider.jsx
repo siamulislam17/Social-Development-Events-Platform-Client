@@ -28,7 +28,10 @@ const AuthProvider = ( {children} ) => {
         displayName: name,
         photoURL: photo
         })
+        
     }
+
+    console.log("user", user);
 
      useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -46,7 +49,6 @@ const AuthProvider = ( {children} ) => {
         setDarkMode,
         signInWithEmailPassword,
         user, 
-        setUser,
         loading,
         setLoading,
         updateUser

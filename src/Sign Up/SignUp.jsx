@@ -3,9 +3,10 @@ import { FcGoogle } from 'react-icons/fc';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import AuthContext from '../Auth/AuthContext';
 import { Link } from 'react-router'; // fixed import
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
-  const { darkMode } = useContext(AuthContext);
+  const { darkMode,user,signInWithEmailPassword,updateUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -22,13 +23,42 @@ const SignUp = () => {
     }
   };
 
+
+    // Handle sign up
   const handleSignUp = (e) => {
     e.preventDefault();
-    if (passwordError) {
-      return;
-    }
-    console.log('Sign up with email & password');
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photo = form.photo.value;
+    const password = form.password.value;
+
+    signInWithEmailPassword(email, password, name, photo)
+      .then((user) => {
+        updateUser(name, photo)
+
+        Swal.fire({
+          title: 'Sign Up Successful',
+          text: 'Welcome to our platform!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        });
+
+
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: 'Sign Up Failed',
+          text: error.message,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      });
   };
+
+
+
+
 
   const handleGoogleSignUp = () => {
     console.log('Sign up with Google');
