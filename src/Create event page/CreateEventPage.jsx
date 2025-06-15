@@ -4,6 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router';
 import AuthContext from '../Auth/AuthContext';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const CreateEventPage = () => {
   const { user, darkMode } = useContext(AuthContext);
@@ -22,17 +23,28 @@ const CreateEventPage = () => {
 
    
     const eventData = {
-      title,
-      description,
-      type,
-      thumbnail,
-      location,
-      date,
-      creatorEmail: user.email,
-    };
-
-    console.log('Event Data:', eventData);
+    title,
+    description,
+    type,
+    thumbnail,
+    location,
+    date: date?.toISOString(),
+    creatorEmail: user?.email,
   };
+
+    try {
+        const res = await axios.post('http://localhost:3000/events', eventData);
+        if (res.data.insertedId || res.data.acknowledged) {
+        Swal.fire('Success!', 'Event created successfully!', 'success');
+        navigate('/'); // Or navigate to your event list page
+        } else {
+        throw new Error('Event creation failed');
+        }
+    } catch (err) {
+        console.error(err);
+        Swal.fire('Error!', 'Failed to create event', 'error');
+    }
+};
 
   const inputStyle = `input input-bordered w-full  ${darkMode ? 'bg-gray-100 text-gray-800 placeholder-gray-700' : ''}`;
   const textareaStyle = `textarea textarea-bordered w-full ${darkMode ? 'bg-gray-100 text-gray-900 placeholder-gray-700' : ''}`;
@@ -40,9 +52,10 @@ const CreateEventPage = () => {
 
   return (
     <div className={`mx-auto p-6 shadow-2xl  transition-all duration-300 ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
-      <h2 className="text-2xl font-bold mb-6 text-center">Create New Event</h2>
+      <h2 className="text-2xl md:mt-8 font-bold mb-6 text-center">Create New Event</h2>
 
-      <form onSubmit={handleSubmit} className={`space-y-5 p-6 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-base-200'} shadow-2xl my-15`}>
+      <form onSubmit={handleSubmit} className={`md:w-1/2 mx-auto py-8 md:py-16 md:px-16 space-y-5 p-6 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-base-200'} shadow-2xl my-15`}>
+        <label className="block mb-2 font-medium">Event Title</label>
         <input
           type="text"
           name="title"
@@ -50,7 +63,7 @@ const CreateEventPage = () => {
           className={inputStyle}
           required
         />
-
+        <label  className="block mb-2 font-medium">Event Description</label>
         <textarea
           name="description"
           placeholder="Event Description"
@@ -58,6 +71,7 @@ const CreateEventPage = () => {
           required
         ></textarea>
 
+        <label className="block mb-2 font-medium">Event Type</label>
         <select name="type" className={selectStyle} required>
           <option value="" disabled>Select Event Type</option>
           <option value="Cleanup">Cleanup</option>
@@ -65,6 +79,7 @@ const CreateEventPage = () => {
           <option value="Donation">Donation</option>
         </select>
 
+        <label className="block mb-2 font-medium">Thumbnail Image URL</label>
         <input
           type="text"
           name="thumbnail"
@@ -73,6 +88,7 @@ const CreateEventPage = () => {
           required
         />
 
+        <label className="block mb-2 font-medium">Event Location</label>
         <input
           type="text"
           name="location"

@@ -2,12 +2,15 @@ import React, { useContext, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import AuthContext from '../Auth/AuthContext';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 
 const Login = () => {
   const { darkMode , signIn, googleSignIn } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -21,6 +24,7 @@ const Login = () => {
         icon: 'success',
         confirmButtonText: 'OK'
       });
+       navigate(from, { replace: true });
     })
     .catch((error) => {
       Swal.fire({
@@ -41,6 +45,7 @@ const Login = () => {
           icon: 'success',
           confirmButtonText: 'OK'
         });
+         navigate(from, { replace: true });
       })
       .catch((error) => {
         Swal.fire({

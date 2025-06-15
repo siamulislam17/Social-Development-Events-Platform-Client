@@ -9,6 +9,7 @@ import MainPage from '../MainPage/MainPage';
 import Login from '../LogIn/Login';
 import SignUp from '../Sign Up/SignUp';
 import CreateEventPage from '../Create event page/CreateEventPage';
+import PrivateRoute from './PrivateRoute';
 
 
 const router = createBrowserRouter([
@@ -21,16 +22,16 @@ const router = createBrowserRouter([
         element: <MainPage />,
       },
       {
-        path: 'login',
+        path: '/login',
         element: <Login />
       },
       {
-        path: 'signup',
+        path: '/signup',
         element: <SignUp></SignUp>
       },
       {
         path: '/create-event',
-        element: <CreateEventPage />
+        element: <PrivateRoute><CreateEventPage /></PrivateRoute>
       }
     ],
   },
