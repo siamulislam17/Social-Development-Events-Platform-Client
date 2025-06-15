@@ -75,7 +75,7 @@ const Navbar = () => {
           <div className="relative group w-full">
             {/* Profile Image */}
             <img
-              src={user.photoURL || 'https://i.ibb.co/2t9yfxc/blank-profile.jpg'}
+              src={user.photoURL}
               alt="profile"
               className="w-10 h-10 rounded-full cursor-pointer border-2 border-accent"
               onClick={() => setDropdownOpen(!dropdownOpen)}
