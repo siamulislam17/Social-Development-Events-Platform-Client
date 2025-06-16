@@ -76,7 +76,7 @@ const AuthProvider = ( {children} ) => {
     }
     return (
         <div>
-            <AuthContext value={userData}>{children}</AuthContext>
+            <AuthContext value={userData}>{!loading && children}</AuthContext>
         </div>
     );
 };

@@ -6,6 +6,7 @@ import AuthContext from '../Auth/AuthContext';
 const UpcomingEvents = () => {
     const {darkMode} = useContext(AuthContext);
   const [events, setEvents] = useState([]);
+  console.log("events", events);
 
   useEffect(() => {
     axios.get('http://localhost:3000/events/upcoming')

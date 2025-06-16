@@ -5,6 +5,7 @@ import AuthContext from '../Auth/AuthContext';
 import Swal from 'sweetalert2';
 
 const EventDetails = () => {
+     
    
   const { id } = useParams();
   const [event, setEvent] = useState(null);
@@ -14,13 +15,21 @@ const EventDetails = () => {
     axios.get(`http://localhost:3000/events/${id}`)
       .then(res => setEvent(res.data));
   }, [id]);
+ 
 
   const handleJoin = () => {
     const joinData = {
       eventId: id,
       userEmail: user?.email,
       joinedAt: new Date(),
+      eventTitle: event?.title,
+      eventLocation: event?.location,
+      eventType: event?.type,
+      eventDate: event?.date,
+        userName: user?.name,
+        thumbnail: event?.thumbnail,
     };
+    console.log(joinData);
 
     axios.post('http://localhost:3000/joined-events', joinData)
       .then(() => {
