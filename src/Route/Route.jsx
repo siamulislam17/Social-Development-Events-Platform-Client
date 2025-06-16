@@ -10,6 +10,8 @@ import Login from '../LogIn/Login';
 import SignUp from '../Sign Up/SignUp';
 import CreateEventPage from '../Create event page/CreateEventPage';
 import PrivateRoute from './PrivateRoute';
+import EventDetails from '../EventDetails/EventDetails';
+import JoinPage from '../Join Page/JoinPage';
 
 
 const router = createBrowserRouter([
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
         path: '/create-event',
         element: <PrivateRoute><CreateEventPage /></PrivateRoute>
       },
+      {
+        path: '/event/:id',
+        element: <PrivateRoute><EventDetails /></PrivateRoute>
+      },
+      {
+        path: '/joined-events',
+        element: <PrivateRoute><JoinPage /></PrivateRoute>
+      }
       
     ],
   },
