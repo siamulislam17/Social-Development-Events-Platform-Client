@@ -9,7 +9,7 @@ const UpcomingEvents = () => {
   console.log("events", events);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/events/upcoming')
+    axios.get('https://social-development-events-platform.vercel.app/events/upcoming')
       .then(res => setEvents(res.data))
       .catch(err => console.error(err))
       .finally(() => setLoading(false));

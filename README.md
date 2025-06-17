@@ -1,12 +1,39 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ # 🌱 Social Development Events Platform (Frontend)
 
-Currently, two official plugins are available:
+A community-driven platform to create, join, and manage **social service events**. This React-based frontend allows users to explore events like:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🧹 *Road Cleaning in Mirpur 10, Dhaka*
+- 🌳 *Tree Plantation - Hossainpur, Kishoreganj*
 
-## Expanding the ESLint configuration
+## 🚀 Live Site
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🌐 [Click to visit live]( https://social-development-event-f45ac.web.app/)
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- ⚛️ **React.js**
+- 💨 **Tailwind CSS** – for fast, utility-first styling
+- 🌼 **DaisyUI** – Tailwind component library
+- 🎉 **SweetAlert2** – beautiful popup modals
+- 📆 **React Datepicker** – for choosing future event dates
+- 🎞 **Framer Motion** – smooth animations
+- 🌗 **Dark Mode Support** – using React Context API
+
+### Backend
+- 🌐 **Express.js**
+- 🍃 **MongoDB**
+- 🔐 JWT-based authentication (via Firebase)
+
+---
+
+## 📦 Installation & Run
+
+### 1️⃣ Clone the repository
+
+```bash
+git clone https://github.com/your-username/social-development-frontend.git
+cd social-development-frontend

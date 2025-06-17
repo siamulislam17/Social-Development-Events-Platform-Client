@@ -10,7 +10,7 @@ const CreateEventPage = () => {
   const { user, darkMode } = useContext(AuthContext);
   const [date, setDate] = useState(null);
   const navigate = useNavigate();
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -33,7 +33,13 @@ const CreateEventPage = () => {
   };
 
     try {
-        const res = await axios.post('http://localhost:3000/events', eventData);
+         const token = await user.getIdToken();
+    
+        const res = await axios.post('https://social-development-events-platform.vercel.app/events', eventData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (res.data.insertedId || res.data.acknowledged) {
         Swal.fire('Success!', 'Event created successfully!', 'success');
         navigate('/'); // Or navigate to your event list page

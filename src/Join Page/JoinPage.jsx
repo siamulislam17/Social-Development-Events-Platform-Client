@@ -10,7 +10,13 @@ const JoinPage = () => {
 
    useEffect(() => {
     if (user?.email) {
-      axios.get(`http://localhost:3000/joined-events?email=${user.email}`)
+      axios.get(`https://social-development-events-platform.vercel.app/joined-events?email=${user.email}`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        }
+      )
         .then(res => setUserJoinedEvents(res.data))
         .catch(err => console.error('Error fetching joined events:', err));
     }
@@ -19,7 +25,7 @@ const JoinPage = () => {
     
     useEffect(() => {
   if (userJoinedEvents.length > 0) {
-    axios.get(`http://localhost:3000/events`)
+    axios.get(`https://social-development-events-platform.vercel.app/events`)
       .then(res => {
         const filteredEvents = res.data.filter(event =>
           userJoinedEvents.some(joinedEvent => joinedEvent.eventId === event._id.toString())
@@ -37,7 +43,7 @@ const JoinPage = () => {
       <h2 className="text-2xl font-bold mb-4">My Joined Events</h2>
       {
         loading ? (
-          <span className="loading loading-bars h-screen mx-auto  loading-xl"></span>
+          <span className="loading loading-bars h-screen mx-auto  loading-2xl"></span>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {displayData.map(event => (

@@ -10,11 +10,18 @@ const EventDetails = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const { user, darkMode } = useContext(AuthContext);
+  const accessToken = user.accessToken;
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/events/${id}`)
-      .then(res => setEvent(res.data));
-  }, [id]);
+    axios.get(`https://social-development-events-platform.vercel.app/events/${id}`, { 
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then(res => setEvent(res.data))
+      .catch(err => console.error('Failed to fetch event:', err));
+  }, [id, accessToken]);
+
  
 
   const handleJoin = () => {
@@ -30,8 +37,11 @@ const EventDetails = () => {
         thumbnail: event?.thumbnail,
     };
     console.log(joinData);
-
-    axios.post('http://localhost:3000/joined-events', joinData)
+    const token = user.accessToken;
+    axios.post('https://social-development-events-platform.vercel.app/joined-events', joinData,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+    }})
       .then(() => {
         Swal.fire({
           title: 'Success',
