@@ -12,7 +12,7 @@ const GallerySection = () => {
   return (
     <section
       className={`py-12 md:py-20 px-4 md:px-8 lg:px-16 ${
-        darkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'
+        darkMode ? 'bg-gray-900 text-white' : 'bg-blue-100 text-gray-900'
       }`}
     >
       <div className="max-w-7xl mx-auto text-center mb-10">

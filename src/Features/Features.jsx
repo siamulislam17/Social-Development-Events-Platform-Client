@@ -25,7 +25,7 @@ const Features = () => {
   ];
 
   return (
-    <div className={`py-12 md:py-25 px-4 md:px-16 ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
+    <div className={`py-12 md:py-25 px-4 md:px-16 ${darkMode ? 'bg-gray-900 text-white' : 'bg-blue-100 text-gray-900'}`}>
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">Key Features</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
