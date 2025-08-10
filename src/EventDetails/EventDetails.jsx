@@ -60,7 +60,7 @@ const EventDetails = () => {
       );
   };
 
-  if (!event) return <div>Loading...</div>;
+  if (!event) return <div><span className="loading loading-bars h-screen mx-auto loading-xl flex justify-center"></span></div>;
 
   return (
     <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-base-100 text-gray-900'}   flex items-center justify-center`}>

@@ -13,6 +13,7 @@ import PrivateRoute from './PrivateRoute';
 import EventDetails from '../EventDetails/EventDetails';
 import JoinPage from '../Join Page/JoinPage';
 import ManageEvent from '../Manage Event/ManageEvent';
+import Blog from '../Blogs/Blogs';
 
 
 const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: '/manage-events',
         element: <PrivateRoute><ManageEvent></ManageEvent></PrivateRoute>
+      },
+      {
+        path: '/blogs',
+        element: <Blog />
       }
       
     ],
