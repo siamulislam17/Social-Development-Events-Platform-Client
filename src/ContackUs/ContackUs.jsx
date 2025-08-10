@@ -8,7 +8,7 @@ const ConnectWithUs = () => {
   return (
     <section
       className={`py-10 px-6 h-screen flex flex-col justify-center items-center ${
-        darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
+       darkMode ? "bg-gray-900 text-white" : "bg-blue-100 text-gray-900"
       }`}
     >
       <div className="max-w-3xl mx-auto text-center">

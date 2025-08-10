@@ -47,11 +47,21 @@ const Navbar = () => {
       </div>
 
       {/* Middle: Public Nav Links */}
-      <div className="hidden md:flex gap-6">
-        <Link to="/about" className="hover:text-accent transition">About</Link>
-        <Link to="/connect" className="hover:text-accent transition">Connect with Us</Link>
-        <Link to="/blogs" className="hover:text-accent transition">Blogs</Link>
-      </div>
+        <div className="hidden md:flex gap-6">
+          <Link to="/about" className="hover:text-accent transition">About</Link>
+          <Link to="/connect" className="hover:text-accent transition">Connect with Us</Link>
+          <Link to="/blogs" className="hover:text-accent transition">Blogs</Link>
+
+          {/* Show special features if logged in */}
+          {user && (
+            <>
+              <Link to="/create-event" className="hover:text-accent transition">Create Event</Link>
+              <Link to="/manage-events" className="hover:text-accent transition">Manage Events</Link>
+              <Link to="/joined-events" className="hover:text-accent transition">Joined Events</Link>
+            </>
+          )}
+        </div>
+
 
       {/* Right Side */}
       <div className="flex items-center md:mx-8 gap-3">

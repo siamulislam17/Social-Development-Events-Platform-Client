@@ -13,7 +13,7 @@ const Blog = () => {
     setBlogs([
       {
         id: 1,
-        title: "🌱 Community Tree Plantation Drive",
+        title: " Community Tree Plantation Drive",
         author: "Admin",
         date: "Aug 5, 2025",
         excerpt:
@@ -24,7 +24,7 @@ const Blog = () => {
       },
       {
         id: 2,
-        title: "💧 Clean Water Awareness Program",
+        title: " Clean Water Awareness Program",
         author: "Event Organizer",
         date: "July 28, 2025",
         excerpt:
@@ -35,7 +35,7 @@ const Blog = () => {
       },
       {
         id: 3,
-        title: "📚 Free Education Camp for Underprivileged Children",
+        title: " Free Education Camp for Underprivileged Children",
         author: "Volunteer Group",
         date: "July 20, 2025",
         excerpt:

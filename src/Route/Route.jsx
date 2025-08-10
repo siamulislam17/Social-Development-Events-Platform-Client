@@ -15,6 +15,7 @@ import JoinPage from '../Join Page/JoinPage';
 import ManageEvent from '../Manage Event/ManageEvent';
 import Blog from '../Blogs/Blogs';
 import ConnectWithUs from '../ContackUs/ContackUs';
+import AboutSection from '../About/About';
 
 
 
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: '/connect',
         element: <ConnectWithUs />
+      },
+      {
+        path: '/about',
+        element: <AboutSection />
       }
       
     ],
