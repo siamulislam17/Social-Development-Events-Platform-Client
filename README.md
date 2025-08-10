@@ -31,8 +31,6 @@ A community-driven platform to create, join, and manage **social service events*
 
 ---
 
-## 📦 Installation & Run
-
 ### 1️⃣ Clone the repository
 
 ```bash
