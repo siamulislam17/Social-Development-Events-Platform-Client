@@ -38,6 +38,10 @@ const JoinPage = () => {
 }, [userJoinedEvents]);
 
 
+if (!displayData.length) {
+    return <div className='flex justify-center items-center h-screen'><span className="loading loading-bars loading-xl"></span></div>
+  }
+
   return (
     <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-blue-100 text-black'} p-4 py-16`}>
       <h2 className="text-2xl font-bold mb-4">My Joined Events</h2>
