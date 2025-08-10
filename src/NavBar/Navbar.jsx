@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 
 const Navbar = () => {
-  const { darkMode, setDarkMode, user ,signout  } = useContext(AuthContext);
+  const { darkMode, setDarkMode, user, signout } = useContext(AuthContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleLogout = () => {
@@ -35,32 +35,38 @@ const Navbar = () => {
         darkMode ? 'bg-gray-900 text-white' : 'bg-base-100 text-gray-900'
       }`}
     >
-      {/* Left side: Logo and Brand */}
+      {/* Left: Logo */}
       <div className="flex-1">
         <Link to="/" className="flex items-center gap-2">
           <FiUsers className="text-3xl text-accent" />
           <span className="text-2xl font-extrabold">
-            Social<span className={darkMode ? 'text-yellow-400' : 'text-accent'}>Events</span>
+            Social
+            <span className={darkMode ? 'text-yellow-400' : 'text-accent'}>Events</span>
           </span>
         </Link>
       </div>
 
-      
+      {/* Middle: Public Nav Links */}
+      <div className="hidden md:flex gap-6">
+        <Link to="/about" className="hover:text-accent transition">About</Link>
+        <Link to="/connect" className="hover:text-accent transition">Connect with Us</Link>
+        <Link to="/blogs" className="hover:text-accent transition">Blogs</Link>
+      </div>
 
       {/* Right Side */}
       <div className="flex items-center md:mx-8 gap-3">
         {/* Dark Mode Toggle */}
         <label className="swap swap-rotate cursor-pointer md:ml-10">
           <input type="checkbox" onChange={() => setDarkMode(!darkMode)} checked={darkMode} />
-          <FaSun className="swap-on h-6 w-6  text-yellow-400" />
+          <FaSun className="swap-on h-6 w-6 text-yellow-400" />
           <FaMoon className="swap-off h-6 w-6 text-gray-600" />
         </label>
 
-        {/* User Auth Buttons */}
+        {/* Auth Buttons */}
         {!user ? (
           <Link to="/login">
-         <button
-              className={` px-4 md:py-2 py-1.5 rounded-4xl md:ml-3 transition duration-300 text-white border-none shadow-md
+            <button
+              className={`px-4 md:py-2 py-1.5 rounded-4xl md:ml-3 transition duration-300 text-white border-none shadow-md
                 ${
                   darkMode
                     ? 'bg-gradient-to-r from-yellow-500 to-pink-500 hover:from-yellow-500 hover:to-pink-600'
@@ -86,45 +92,35 @@ const Navbar = () => {
             {dropdownOpen && (
               <ul
                 className={`absolute right-0 mt-3 w-52 rounded-lg shadow-xl z-50
-                  transform origin-top-right
                   ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}
-                  ${darkMode ? 'border-gray-700' : 'border-gray-200'}
-                  transition duration-200 ease-out
+                  border transition duration-200 ease-out
                   scale-100 opacity-100
-                  `}
-                style={{ animation: 'slideFadeRightToLeft 0.8s ease forwards' }}
+                `}
               >
-                
-
-                
-
                 <li>
                   <Link
                     to="/create-event"
-                    className="block px-5 py-3 hover:bg-yellow-400 hover:text-black dark:hover:bg-yellow-500 dark:hover:text-white transition"
+                    className="block px-5 py-3 hover:bg-yellow-400 hover:text-black transition"
                   >
                     Create Event
                   </Link>
                 </li>
-
                 <li>
                   <Link
                     to="/manage-events"
-                    className="block px-5 py-3 hover:bg-yellow-400 hover:text-black dark:hover:bg-yellow-500 dark:hover:text-white transition"
+                    className="block px-5 py-3 hover:bg-yellow-400 hover:text-black transition"
                   >
                     Manage Events
                   </Link>
                 </li>
-
                 <li>
                   <Link
                     to="/joined-events"
-                    className="block px-5 py-3 hover:bg-yellow-400 hover:text-black dark:hover:bg-yellow-500 dark:hover:text-white transition"
+                    className="block px-5 py-3 hover:bg-yellow-400 hover:text-black transition"
                   >
                     Joined Events
                   </Link>
                 </li>
-
                 <li>
                   <button
                     onClick={handleLogout}
@@ -137,7 +133,6 @@ const Navbar = () => {
             )}
           </div>
         )}
-
       </div>
     </div>
   );

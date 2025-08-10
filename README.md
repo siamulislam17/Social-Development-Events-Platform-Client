@@ -9,6 +9,7 @@ A community-driven platform to create, join, and manage **social service events*
 ## 🚀 Live Site
 
 🌐 [Click to visit live]( https://social-development-event-f45ac.web.app/)
+🌐 [Click to visit live]( https://social-development-event-f45ac.firebaseapp.com/)
 
 ---
 

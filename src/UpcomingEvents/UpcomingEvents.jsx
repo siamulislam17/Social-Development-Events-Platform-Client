@@ -34,7 +34,6 @@ const UpcomingEvents = () => {
                   >
                 <img src={event.thumbnail} alt={event.title} className="rounded-lg h-48 w-full object-cover"/>
                 <h2 className="text-xl font-bold mt-3">{event.title}</h2>
-                <p><strong>Location:</strong> {event.location}</p>
                 <p><strong>Type:</strong> {event.type}</p>
                 <p><strong>Date:</strong> {new Date(event.date).toLocaleString()}</p>
                 <Link to={`/event/${event._id}`}>
