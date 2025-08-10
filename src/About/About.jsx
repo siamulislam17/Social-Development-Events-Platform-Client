@@ -11,7 +11,7 @@ const AboutSection = () => {
       }`}
     >
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-6">ℹ️ About Us</h2>
+        <h2 className="text-3xl font-bold mb-6"> About Us</h2>
         <p className="text-lg leading-relaxed">
           Welcome to our Social Development Events Platform! We are dedicated to
           organizing and promoting community-driven initiatives such as tree

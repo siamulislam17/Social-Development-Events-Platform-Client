@@ -117,7 +117,7 @@ const CreateEventPage = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary w-full">Create Event</button>
+        <button type="submit" className="bg-accent hover:bg-accent/80 hover:shadow-2xl rounded-2xl py-1.5 text-white font-semibold w-full">Create Event</button>
       </form>
     </div>
   );

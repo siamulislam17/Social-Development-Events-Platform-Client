@@ -79,8 +79,11 @@ const ManageEvent = () => {
   const themeCard = darkMode ? "bg-gray-800 text-white" : "bg-base-100";
   const themeForm = darkMode ? "bg-gray-800 text-white" : "bg-base-200";
 
+  if (!events.length) {
+    return <div className='flex justify-center items-center h-screen'><span className="loading loading-bars loading-xl"></span></div>
+  }
   return (
-    <div className={`p-6  mx-auto ${darkMode ? 'bg-gray-900 text-white' : 'bg-blue-100 text-gray-900'}`}>
+    <div className={`p-6  mx-auto h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-blue-100 text-gray-900'}`}>
       <h2 className="text-3xl font-bold mb-6 text-center">Manage Your Upcoming Events</h2>
 
       <div className="space-y-4 max-w-3xl mx-auto">
