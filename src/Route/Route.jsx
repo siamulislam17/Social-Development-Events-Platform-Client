@@ -14,6 +14,8 @@ import EventDetails from '../EventDetails/EventDetails';
 import JoinPage from '../Join Page/JoinPage';
 import ManageEvent from '../Manage Event/ManageEvent';
 import Blog from '../Blogs/Blogs';
+import ConnectWithUs from '../ContackUs/ContackUs';
+
 
 
 const router = createBrowserRouter([
@@ -52,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: '/blogs',
         element: <Blog />
+      },
+      {
+        path: '/connect',
+        element: <ConnectWithUs />
       }
       
     ],
